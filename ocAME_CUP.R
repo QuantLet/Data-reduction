@@ -3,8 +3,7 @@ ocAME_CUP<-function (w, dat, vettau, gama, varmat, pai,int,  pvarit, digits = 3)
 	
 	dat1<-as.data.frame(dat) 
 
-	nlev<-sapply(dat1,nlevels) #per i fattori ottengo i livelli. Per variabili numeriche ottengo 0
-
+	nlev<-sapply(dat1,nlevels) 
 	
 # 1. Check inputs
 
