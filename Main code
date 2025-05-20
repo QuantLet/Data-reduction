@@ -13,13 +13,12 @@ gen<-dati$gender
 C<-dati$region
 k<-5
 
-## Preliminary estimators for \alpha and \gamma
 require(MASS)
 ordinal<-dati[,3]
 
 ### POM
 cumlogit=polr(factor(ordinal)~gen+C,Hess = TRUE,method = "logistic")
-### Preliminary estimators for \alpha and \gamma
+
 prevettau<- cumlogit$zeta
 pregama<-cumlogitcoefficients
 
@@ -33,11 +32,10 @@ prepai<-coef(model)[1]
 require(discmix) # https://github.com/Micha-Schneider/discmix
 n<-length(ordinal)
 W<-cbind(gen,C)
-cup<-CUP0q(ordinal,W,prepai,prevettau,pregama)
 CUP <- discmix(y = ordinal, x=W, model = uniform.cumlogit.mix.vgam, cores=2)
 
 require(ocAME)
 
 newdata<-cbind(ordinal,gen,C)
 dati<-data.frame(newdata)
-ocAME_CUP(cumlogit, dati, vettau, gama, varmat, prepai, int=0,digits = 4)
+ocAME_CUP(cumlogit, dati, vettau, gama, varmat, prepai, int=0, digits = 4)
