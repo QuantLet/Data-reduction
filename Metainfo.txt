@@ -1,0 +1,14 @@
+Name of Quantlet: 'Data reduction'
+
+Description: 'The code makes the reduction of the data.'
+
+Submitted:  '20 May 2025'
+
+Keywords: 
+- 'reduction'
+- 'ordinal data'
+- 'Eigenvector centrality'
+- 'High-dimensionality estimation'
+
+Author: 
+- 'Maria '
