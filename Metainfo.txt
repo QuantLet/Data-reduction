@@ -1,9 +1,7 @@
 Name of Quantlet: 'Marginal Effect for ordinal data'
 
-Description: 'The R code is designed to compute and visualize effect measures for covariates in ordinal data models, with a focus on interpreting effects in extreme response categories, evaluating response styles, and informing the collapsing of categories.
-
+Description: 'The R code is designed to compute and visualize effect measures for covariates in ordinal data models, with a focus on interpreting effects in extreme response categories, evaluating response styles, and informing the collapsing of categories. 
 Key functionalities include:
-
 - Fitting standard cumulative link models (CLMs) under the proportional odds assumption, using functions from packages like ordinal.
 - Implementing mixture models—specifically the Combination of Uncertainty and Preference (CUP) framework—to account for uncertainty in respondents’ ratings.
 - Computing marginal effect measures that quantify the influence of covariates on each response category, particularly highlighting the underestimation of effects when uncertainty is ignored.
@@ -27,8 +25,6 @@ Keywords:
 - 'proportional odds'
 - 'rating data'
 - 'uncertainty'
- visualization tools
-
 
 Author: 
 - 'Maria Iannario, Claudia Tarantola'
