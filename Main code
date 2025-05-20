@@ -5,10 +5,10 @@ dati <- read.table(choose.files(), header=T, sep=",")
 # R= Career opportunities (My job offers good prospects for career advancement).
 # k=5 from strongly disagree=1,strongly agree=5
 ### Covariates
-# gender: 0,1 -> 0=M 1=F
+# gender: 1,2 -> 1=M 2=F
 # region: region according to the geographic scheme in use by the United Nations
 # (they include Cyprus and Turkey)
-# 0=Others 1=Southern;
+# 1=Others 2=Southern;
 gen<-dati$gender
 C<-dati$region
 k<-5
