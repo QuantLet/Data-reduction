@@ -1,10 +1,9 @@
-ocAME_CUP<-function (w, dat, vettau, gama, varmat, pai,int,  pvarit, digits = 3) {
+ocAME_CUP<-function (w, dat, vettau, gama, varmat, pai, int,  pvarit, digits = 3) {
 
 	
 	dat1<-as.data.frame(dat) 
 
-	nlev<-sapply(dat1,nlevels) #per i fattori ottengo i livelli. Per variabili numeriche ottengo 0
-
+	nlev<-sapply(dat1,nlevels) 
 	
 # 1. Check inputs
 
@@ -117,16 +116,16 @@ ocAME_CUP<-function (w, dat, vettau, gama, varmat, pai,int,  pvarit, digits = 3)
 # 4. Revise AME and standard error for categorical variable.
 
 nlev<-sapply(dat[,x.name],nlevels)
-nlev<-as.numeric(nlev)	#number of levels of the independent variables
-va<-0                   #va indicates which variable I am considering
-ro<-1                   #row of the beta vectorif (rev.cat) 
+nlev<-as.numeric(nlev)	
+va<-0                   
+ro<-1                   
 vamax<-length(x.name)
 
 
 while(va<(vamax)){	
 				k=ro
 				va=va+1
-				#print(va)
+			
 	if (nlev[va]>0){
 				x.d0<-x
 				x.d0[,k:(k+nlev[va]-2)] <-0
@@ -185,4 +184,3 @@ while(va<(vamax)){
     class(result) <- "ocAME_CUP"
     return(result)
 }
-
