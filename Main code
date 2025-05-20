@@ -1,0 +1,42 @@
+# load data
+dati <- read.table(choose.files(), header=T, sep=",")
+
+### Ordinal variable
+# R= Career opportunities (My job offers good prospects for career advancement).
+# k=5 from strongly disagree=1,strongly agree=5
+### Covariates
+# gender: 1,2 -> 1=M 2=F
+# region: region according to the geographic scheme in use by the United Nations
+# (they include Cyprus and Turkey)
+# 1=Others 2=Southern;
+gen<-dati$gender
+C<-dati$region
+k<-5
+
+## Preliminary estimators for \alpha and \gamma
+require(MASS)
+ordinal<-dati[,3]
+
+### POM
+cumlogit=polr(factor(ordinal)~gen+C,Hess = TRUE,method = "logistic")
+### Preliminary estimators for \alpha and \gamma
+prevettau<- cumlogit$zeta
+pregama<-cumlogitcoefficients
+
+Preliminary estimator for \pi
+require(CUB)
+F1<-Formula(ordinal~0|gen+C|0)
+model<-GEM(F1,family="cub")
+prepai<-coef(model)[1]
+
+### CUP Model
+require(CUP)
+n<-length(ordinal)
+W<-cbind(gen,C)
+cup<-CUP0q(ordinal,W,prepai,prevettau,pregama)
+
+require(ocAME)
+
+newdata<-cbind(ordinal,gen,C)
+dati<-data.frame(newdata)
+ocAME_CUP(cumlogit, dati, vettau, gama, varmat, pai, int=0,digits = 4)
