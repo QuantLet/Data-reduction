@@ -1,5 +1,5 @@
 # load data
-dati <- read.table(choose.files(), header=T, sep=",")
+data <- read.table(choose.files(), header=T, sep=",")
 
 ### Ordinal variable
 # R= Career opportunities (My job offers good prospects for career advancement).
@@ -9,13 +9,13 @@ dati <- read.table(choose.files(), header=T, sep=",")
 # region: region according to the geographic scheme in use by the United Nations
 # (they include Cyprus and Turkey)
 # 1=Others 2=Southern;
-gen<-dati$gender
-C<-dati$region
+gen<-data$gender
+C<-data$region
 k<-5
 
 ## Preliminary estimators for \alpha and \gamma
 require(MASS)
-ordinal<-dati[,3]
+ordinal<-data[,3]
 
 ### POM
 cumlogit=polr(factor(ordinal)~gen+C,Hess = TRUE,method = "logistic")
@@ -30,13 +30,12 @@ model<-GEM(F1,family="cub")
 prepai<-coef(model)[1]
 
 ### CUP Model
-require(CUP)
+require(DiscMix) # https://github.com/Micha-Schneider/discmix/blob/master/DiscMix_1.0.2.tar.gz
 n<-length(ordinal)
-W<-cbind(gen,C)
-cup<-CUP0q(ordinal,W,prepai,prevettau,pregama)
+X<-cbind(gen,C)
+CUP <- discmix(y = Y, x=X, model = uniform.cumlogit.mix.vgam, cores=2)
 
 require(ocAME)
-
 newdata<-cbind(ordinal,gen,C)
 dati<-data.frame(newdata)
-ocAME_CUP(cumlogit, dati, vettau, gama, varmat, pai, int=0,digits = 4)
+ocAME_CUP(cumlogit, dati, vettau, gama, varmat, prepai, int=0,digits = 4)
