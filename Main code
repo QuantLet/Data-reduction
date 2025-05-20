@@ -2,7 +2,7 @@
 data <- read.table(choose.files(), header=T, sep=",")
 
 ### Ordinal variable
-# R= Career opportunities (My job offers good prospects for career advancement).
+# ordinal= Career opportunities (My job offers good prospects for career advancement).
 # k=5 from strongly disagree=1,strongly agree=5
 ### Covariates
 # gender: 1,2 -> 1=M 2=F
