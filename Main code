@@ -23,20 +23,21 @@ cumlogit=polr(factor(ordinal)~gen+C,Hess = TRUE,method = "logistic")
 prevettau<- cumlogit$zeta
 pregama<-cumlogitcoefficients
 
-Preliminary estimator for \pi
+### Preliminary estimator for \pi
 require(CUB)
 F1<-Formula(ordinal~0|gen+C|0)
 model<-GEM(F1,family="cub")
 prepai<-coef(model)[1]
 
 ### CUP Model
-require(CUP)
+require(discmix) # https://github.com/Micha-Schneider/discmix
 n<-length(ordinal)
 W<-cbind(gen,C)
 cup<-CUP0q(ordinal,W,prepai,prevettau,pregama)
+CUP <- discmix(y = ordinal, x=W, model = uniform.cumlogit.mix.vgam, cores=2)
 
 require(ocAME)
 
 newdata<-cbind(ordinal,gen,C)
 dati<-data.frame(newdata)
-ocAME_CUP(cumlogit, dati, vettau, gama, varmat, pai, int=0,digits = 4)
+ocAME_CUP(cumlogit, dati, vettau, gama, varmat, prepai, int=0,digits = 4)
