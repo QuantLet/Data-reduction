@@ -10,7 +10,7 @@ Key functionalities include:
 
 The code is structured to facilitate comparisons between models with and without uncertainty components and supports inference and interpretation in applied ordinal data analysis.
 
-'
+'It is referred to Iannario, M., & Tarantola, C. (2021). How to Interpret the Effect of Covariates on the Extreme Categories in Ordinal Data Models. Sociological Methods & Research, 52(1), 231-267. https://doi.org/10.1177/0049124120986179 (Original work published 2023)'
 
 Submitted:  '20 May 2025'
 
